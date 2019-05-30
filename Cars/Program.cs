@@ -7,7 +7,18 @@ namespace Cars
     {
         static void Main(string[] args)
         {
+            Car meMumsCar = new Car(9001, "Big Red", "74Chugga");
 
+            meMumsCar.AddPassenger(new Passenger("Anne Clements", 'I', 1970));
+            meMumsCar.SetDriver(new Passenger("Dwyane 'The 'The Rock' Rock' Johnson", 'M', 1960));
+
+            meMumsCar.Accelerate(12);
+            meMumsCar.Decelerate(3);
+
+            Console.WriteLine($"Make: {meMumsCar.Make}, Model: {meMumsCar.Model}, Speed: {meMumsCar.Speed}");
+            Console.WriteLine(meMumsCar.Driver.GetInfo());
+
+            Console.ReadKey();
         }
     }
 
@@ -18,8 +29,9 @@ namespace Cars
         public string Model;
         public int Speed;
         public List<Passenger> Passengers;
+        public Passenger Driver;
 
-        public Car(int engineCapacity, string make, string model, int speed, List<Passenger> passengers)
+        public Car(int engineCapacity, string make, string model)
         {
             EngineCapacity = engineCapacity;
             Make = make;
@@ -42,9 +54,14 @@ namespace Cars
             }
         }
 
-        public void AddPaddenger(Passenger newPassenger)
+        public void AddPassenger(Passenger newPassenger)
         {
             Passengers.Add(newPassenger);
+        }
+
+        public void SetDriver(Passenger newPassenger)
+        {
+            Driver = newPassenger;
         }
     }
 
@@ -68,7 +85,7 @@ namespace Cars
 
         public string GetInfo()
         {
-            return $"Name: {Name}, Sex {Sex}, DoB {YearOfBirth}, Age {this.GetAge(2019)}";
+            return $"Name: {Name}, Sex: {Sex}, Age: {this.GetAge(2019)}";
         }
     }
 }
